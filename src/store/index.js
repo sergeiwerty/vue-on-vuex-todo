@@ -1,6 +1,5 @@
 import Vuex from "vuex";
 import Vue from "vue";
-// import todos from "./modules/todos";
 
 Vue.use(Vuex);
 
@@ -47,7 +46,6 @@ export default new Vuex.Store({
   mutations: {
     add_todo(state, todo) {
       state.todos.push(todo);
-      // console.log(todo);
     },
     delete_todo(state, id) {
       state.todos = state.todos.filter((todo) => todo.id !== id);
