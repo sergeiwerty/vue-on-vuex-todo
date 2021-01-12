@@ -1,22 +1,45 @@
 <template>
   <div>
-    <div v-bind:key="todo.id" v-for="todo in todos">
-      <!-- <h3>{{ todo.title }}</h3> -->
-      <Todoitem v-bind:todo="todo" v-on:del-todo="$emit('del-todo', todo.id)" />
+    <div v-for="todo in allTodos" :key="todo.id" class="todos">
+      <!-- <div v-for="todo in allTodos" v-bind:key="todo.id" class="todo">
+        {{ todo.title }}
+      </div> -->
+      <Todoitem :todo="todo" />
+      <!-- <Todoitem />
+      <Todoitem /> -->
     </div>
   </div>
 </template>
 
 <script>
-import Todoitem from "./Todoitem.vue";
+import { mapGetters } from "vuex";
+// import { mapGetters, mapActions } from "vuex";
+import Todoitem from "./Todoitem";
 
 export default {
   name: "Todos",
+  // computed: mapGetters(["allTodos"]),
   components: {
     Todoitem,
   },
-  props: ["todos"],
+  computed: {
+    ...mapGetters(["allTodos"]),
+  },
 };
 </script>
 
-<style scoped></style>>
+<style scoped>
+.todos {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  min-height: auto;
+  background-color: aliceblue;
+}
+
+.todo {
+  padding: 2em;
+  border-radius: 7px;
+  border: 1px solid #7294b2;
+}
+</style>
