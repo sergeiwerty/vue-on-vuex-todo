@@ -70,6 +70,7 @@ input[type="text"] {
 }
 
 button[type="submit"] {
+  max-width: 100px;
   height: 30px;
   margin-left: 15px;
 }
