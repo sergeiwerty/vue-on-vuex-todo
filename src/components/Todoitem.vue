@@ -1,12 +1,18 @@
 <template>
   <!-- <div class="task-item" v-bind:class="{ 'is-complete': todo.completed }"> -->
-  <div class="task-item">
+  <div v-bind:class="{ 'is-complete': todo.completed }" class="task-item">
     <p>
       <!-- <input type="checkbox" v-on:change="markComplete" />
       {{ todo.title }}
       <button @click="$emit('del-todo', todo.id)" v-on:change="delTask">X</button> -->
       {{ todo.title }}
     </p>
+    <input
+      type="checkbox"
+      v-on:change="makeComplited(todo)"
+      id="completeStatus"
+    />
+    <label for="compleStatus">Сделано</label>
     <button @click="deleteTodo(todo.id)" class="del">X</button>
   </div>
 </template>
@@ -21,11 +27,9 @@ export default {
   //     this.todo.completed = !this.todo.completed;
   //   },
   // },
-  props: {
-    todo: {},
-  },
+  props: ["todo"],
   methods: {
-    ...mapActions(["deleteTodo"]),
+    ...mapActions(["deleteTodo", "makeComplited", "clearAllTodos"]),
   },
 };
 </script>
@@ -44,7 +48,7 @@ export default {
 }
 
 .is-complete {
-  text-decoration: line-through;
+  background-color: #a0ffdf;
 }
 
 .del {
@@ -53,5 +57,8 @@ export default {
   background-color: rgb(238, 106, 106);
   border: 0;
   border-radius: 5px;
+}
+input[type="checkbox"] {
+  margin-left: auto;
 }
 </style>

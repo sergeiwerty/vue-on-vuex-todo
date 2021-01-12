@@ -6,6 +6,9 @@
       <div class="wrapper">
         <input @change="todoTextChange" v-bind:value="todoText" type="text" />
         <button @click="addTodoItem" type="submit">Добавить</button>
+        <button @click="clearAllTodos" type="submit" class="clear">
+          Очистить
+        </button>
       </div>
     </div>
   </div>
@@ -21,7 +24,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["addTodo"]),
+    ...mapActions(["addTodo", "clearAllTodos"]),
     todoTextChange(e) {
       this.todoText = e.target.value;
     },
@@ -58,7 +61,6 @@ h2 {
 
 .wrapper {
   display: flex;
-  /* justify-content: space-between; */
   align-items: flex-start;
 }
 input[type="text"] {
@@ -70,5 +72,10 @@ input[type="text"] {
 button[type="submit"] {
   height: 30px;
   margin-left: 15px;
+}
+
+button[type="submit"].clear {
+  margin-left: auto;
+  color: red;
 }
 </style>

@@ -10,7 +10,7 @@ export default new Vuex.Store({
       {
         id: 1,
         title: "Встать в 7:00",
-        completed: true,
+        completed: false,
       },
       {
         id: 2,
@@ -36,15 +36,29 @@ export default new Vuex.Store({
     deleteTodo({ commit }, id) {
       commit("delete_todo", id);
     },
+    makeComplited({ commit }, completed) {
+      commit("make_complited", completed);
+    },
+    clearAllTodos({ commit }) {
+      commit("clear_all_todos");
+    },
   },
 
   mutations: {
     add_todo(state, todo) {
       state.todos.push(todo);
-      console.log(todo);
+      // console.log(todo);
     },
     delete_todo(state, id) {
       state.todos = state.todos.filter((todo) => todo.id !== id);
+    },
+    make_complited(state, todo) {
+      state.todos = state.todos.map((item) =>
+        item.id === todo.id ? { ...item, completed: !item.completed } : item
+      );
+    },
+    clear_all_todos(state) {
+      state.todos = [];
     },
   },
 });
